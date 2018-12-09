@@ -5,7 +5,7 @@
 #include "SDL.h"
 #include "SDL_ttf.h"
 SDL_Renderer *renderer;
-
+SDL_Window *window;
 
 #define RED 1
 #define WHITE 0

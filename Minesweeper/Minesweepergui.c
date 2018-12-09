@@ -72,10 +72,10 @@ int printmainmenu(SDL_Surface* screen)
 		}
 		SDL_BlitSurface(menus[0], NULL, screen, &pos[0]);
 		SDL_BlitSurface(menus[1], NULL, screen, &pos[1]);
-		
+		SDL_UpdateWindowSurface(window);
 
 	}
-
+	
 
 	SDL_RenderPresent(renderer);
 	SDL_RenderClear(renderer);
@@ -85,6 +85,8 @@ int printmainmenu(SDL_Surface* screen)
 
 int main(int agrc, char *agrv[])
 {
+begining:
+	system("cls");
 	while (1) {
 		printf("Enter how many bomb you want between 8 and 25:");
 		scanf_s("%d,\n", &BombCount);
@@ -103,22 +105,22 @@ int main(int agrc, char *agrv[])
 		printf("Couldn't init ttf Error Code:%s\n", TTF_GetError());
 		return -1;
 	}
-	SDL_Window *window;
+	
 	//count
 	setcounts();
 	//settig the window
-	setwindow(&window);
+	setwindow();
 	//setting the arrays
 	setarrays();
 
 
-	/*
+	
 	SDL_Surface *screen;
 	screen = SDL_GetWindowSurface(window);
 	if (printmainmenu(screen) == 1) {
 		exit(1);
 	}
-	*/
+	
 
 
 
@@ -152,8 +154,11 @@ int main(int agrc, char *agrv[])
 					if (table[y][x].surround == Bomb&&table[y][x].state != flagged) {
 						printf(".....You Lost....\a\n");
 						printeverybomb();
-						SDL_Delay(2000);
-						exit(1);
+						SDL_Delay(1000);
+						SDL_RenderClear(renderer);
+						SDL_RenderPresent(renderer);
+						SDL_Delay(2000);						
+						goto begining;
 					}
 						
 					renderboxes();
