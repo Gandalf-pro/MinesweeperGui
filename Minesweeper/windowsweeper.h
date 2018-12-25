@@ -1,7 +1,7 @@
 #include <time.h>
-void setwindow(SDL_Window **window)
+void setwindow()
 {
-	*window = SDL_CreateWindow(
+	window = SDL_CreateWindow(
 		NAME,					           // window title
 		SDL_WINDOWPOS_UNDEFINED,           // initial x position
 		SDL_WINDOWPOS_UNDEFINED,           // initial y position
@@ -9,7 +9,7 @@ void setwindow(SDL_Window **window)
 		windowheight,                      // height, in pixels
 		SDL_WINDOW_OPENGL                  // flags
 	);
-	if (*window == NULL) {
+	if (window == NULL) {
 		// In the case that the window could not be made...
 		printf("Could not create window: %s\n", SDL_GetError());
 		exit(-1);
@@ -46,7 +46,7 @@ void setbombs()
 	start:
 	for (int i = 0; i < ROWCOUNT; i++){
 		for (int j = 0; j < COLCOUNT; j++) {
-			if (count < BombCount&&rand() % 10 == 0) {
+			if (count < BombCount&&rand() % 10 == 0&&table[i][j].surround!=Bomb) {
 				table[i][j].surround = Bomb;
 				count++;
 			}

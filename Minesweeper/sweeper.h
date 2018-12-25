@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <Windows.h>
 #define SDL_MAIN_HANDLED
 #include "SDL.h"
 #include "SDL_ttf.h"
 SDL_Renderer *renderer;
-
+SDL_Window *window;
 
 #define RED 1
 #define WHITE 0
